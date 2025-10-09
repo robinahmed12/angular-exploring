@@ -35,5 +35,7 @@ export class AppComponent {
   onlyOdd = false;
   value = 5;
 
+    accounts: {name: string, status: string}[] = [];
+
   title = 'angular_core';
 }

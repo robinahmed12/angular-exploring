@@ -1,0 +1,11 @@
+<h1 class="my-5">----Services and DI</h1>
+
+<p>{{user}}</p>
+<button class="btn btn-danger" (click)="toggleTheme()">toggle btn</button>
+<p class="">{{isDark}}</p>
+
+
+<div [ngClass]="{ 'dark-theme': isDark, 'light-theme': !isDark }">
+  <!-- content -->
+   <h1>hi</h1>
+</div>
