@@ -12,6 +12,11 @@ import { AccountComponent } from './components/account/account.component';
 import { NewAccountComponent } from './components/new-account/new-account.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ParentComponent } from './component-communication/parent/parent.component';
+import { ChildComponent } from './component-communication/parent/child/child.component';
+import { ParentContentComponent } from './content-projection/parent-content/parent-content.component';
+import { ChildContnetComponent } from './content-projection/parent-content/child-contnet/child-contnet.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +29,11 @@ import { CartComponent } from './components/cart/cart.component';
     NewAccountComponent,
     CounterComponent,
     CartComponent,
+    ParentComponent,
+    ChildComponent,
+    ParentContentComponent,
+    ChildContnetComponent
+    
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

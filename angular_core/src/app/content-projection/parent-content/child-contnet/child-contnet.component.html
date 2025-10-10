@@ -1,0 +1,10 @@
+<div class="message-box">
+  @if (type === 'success') {
+    <ng-content></ng-content>
+  } @else if (type === 'error') {
+    <ng-content></ng-content>
+  } @else {
+    <p>ℹ️ Default message</p>
+  }
+</div>
+

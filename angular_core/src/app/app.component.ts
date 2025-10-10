@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+handleClick() {
+throw new Error('Method not implemented.');
+}
   srvElement = [
     { type: 'server', name: 'Testserver', content: 'Just a test!' },
   ];
@@ -36,6 +39,10 @@ export class AppComponent {
   value = 5;
 
     accounts: {name: string, status: string}[] = [];
+
+    // userClick(){
+    //   alert("hi my name robin")
+    // }
 
   title = 'angular_core';
 }
