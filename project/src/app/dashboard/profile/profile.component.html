@@ -1,0 +1,74 @@
+<div class="max-w-3xl mx-auto bg-[#FFF8F0] p-8 rounded-2xl shadow-md mt-10 border border-[#A8C686]/40">
+  <h2 class="text-3xl font-semibold text-[#8E44AD] mb-6 text-center">👤 Your Profile</h2>
+
+  <form class="space-y-6">
+    <!-- Name -->
+    <div>
+      <label class="block text-[#333333] font-medium mb-2" for="name">Full Name</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="Enter your name"
+        class="w-full border border-[#A8C686]/50 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#8E44AD] transition"
+      />
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label class="block text-[#333333] font-medium mb-2" for="email">Email Address</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="you@example.com"
+        class="w-full border border-[#A8C686]/50 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#8E44AD] transition"
+      />
+    </div>
+
+    <!-- Bio -->
+    <div>
+      <label class="block text-[#333333] font-medium mb-2" for="bio">Bio</label>
+      <textarea
+        id="bio"
+        rows="4"
+        placeholder="Tell us a bit about yourself..."
+        class="w-full border border-[#A8C686]/50 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#8E44AD] transition"
+      ></textarea>
+    </div>
+
+    <!-- Profile Image -->
+    <div>
+      <label class="block text-[#333333] font-medium mb-2">Profile Picture</label>
+      <div class="flex items-center space-x-4">
+        <img
+          src="https://via.placeholder.com/80"
+          alt="Profile preview"
+          class="w-20 h-20 rounded-full border border-[#A8C686]/50 object-cover"
+        />
+        <input
+          type="file"
+          accept="image/*"
+          class="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full
+                 file:border-0 file:text-sm file:font-semibold
+                 file:bg-[#FF6F61]/90 file:text-white hover:file:bg-[#e65c50] transition"
+        />
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-end space-x-4 pt-4">
+      <button
+        type="reset"
+        class="px-5 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-[#333333] font-medium transition"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="px-5 py-2 rounded-lg bg-[#8E44AD] hover:bg-[#7A379B] text-white font-medium transition"
+      >
+        Save Changes
+      </button>
+    </div>
+  </form>
+</div>
+

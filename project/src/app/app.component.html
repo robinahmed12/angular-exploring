@@ -1,4 +1,7 @@
+<header *ngIf="!hideHeader">
 <app-header></app-header>
+</header>
+
 <main class="min-h-[calc(100vh-375px)]">
   <router-outlet></router-outlet>
 </main>

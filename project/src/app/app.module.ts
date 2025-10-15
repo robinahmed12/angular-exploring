@@ -20,6 +20,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ManagRecipeComponent } from './pages/manag-recipe/manag-recipe.component';
 import { RegisterComponent } from './Auhtentication/register/register.component';
 import { LoginComponent } from './Auhtentication/login/login.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+import { SettingsComponent } from './dashboard/settings/settings.component';
+import { NotFountComponent } from './components/not-fount/not-fount.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { LoginComponent } from './Auhtentication/login/login.component';
     FooterComponent,
     ManagRecipeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    ProfileComponent,
+    SettingsComponent,
+    NotFountComponent
 
   ],
   imports: [

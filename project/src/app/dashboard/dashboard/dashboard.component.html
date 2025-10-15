@@ -1,0 +1,51 @@
+<div class="min-h-screen flex flex-col bg-[#FFF8F0] text-[#333333]">
+  <!-- Header -->
+  <header class="bg-[#8E44AD] text-white py-4 px-8 shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-semibold tracking-wide">
+      🍽️ Recipe Dashboard
+    </h1>
+    <button class="bg-[#FF6F61] hover:bg-[#e65c50] transition px-4 py-2 rounded-lg font-medium">
+      Logout
+    </button>
+  </header>
+
+  <!-- Content Area -->
+  <div class="flex flex-1">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#A8C686]/30 p-6 border-r border-[#A8C686]/50">
+      <nav>
+        <ul class="space-y-3 font-medium">
+            <li>
+            <a routerLink="/" routerLinkActive="text-[#8E44AD] font-semibold"
+              class="block p-2 rounded hover:bg-[#A8C686]/40 transition">
+              Home
+            </a>
+          </li>
+          <li>
+            <a routerLink="/dashboard/profile" routerLinkActive="text-[#8E44AD] font-semibold"
+              class="block p-2 rounded hover:bg-[#A8C686]/40 transition">
+              👤 Profile
+            </a>
+          </li>
+          <li>
+            <a routerLink="/dashboard/settings" routerLinkActive="text-[#8E44AD] font-semibold"
+              class="block p-2 rounded hover:bg-[#A8C686]/40 transition">
+              ⚙️ Settings
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+      <h2 class="text-3xl font-semibold text-[#8E44AD] mb-6">Welcome to your Dashboard</h2>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#8E44AD] text-white text-center py-3 mt-auto">
+    <p class="text-sm">© 2025 Recipe World. Crafted with ❤️ and creativity.</p>
+  </footer>
+</div>

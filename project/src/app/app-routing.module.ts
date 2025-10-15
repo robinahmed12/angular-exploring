@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecepiesComponent } from './components/recepies/recepies.component';
 import { HomeComponent } from './home/home.component';
 import { AllRecipeComponent } from './pages/all-recipe/all-recipe.component';
 import { AddRecipeComponent } from './pages/add-recipe/add-recipe.component';
 import { ManagRecipeComponent } from './pages/manag-recipe/manag-recipe.component';
 import { LoginComponent } from './Auhtentication/login/login.component';
 import { RecipeDetailsComponent } from './pages/recipe-details/recipe-details.component';
+import { AuthGuard } from './guard/auth.guard';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+import { SettingsComponent } from './dashboard/settings/settings.component';
+import { UnsavedGuard } from './services/unsaved.guard';
+import { NotFountComponent } from './components/not-fount/not-fount.component';
 
 const routes: Routes = [
   {
@@ -16,9 +21,10 @@ const routes: Routes = [
   {
     path: 'all-recipe',
     component: AllRecipeComponent,
+    canActivate: [AuthGuard],
   },
-   {
-    path: 'all-recipe/:id/:name',
+  {
+    path: 'recipe-details/:id/:name',
     component: RecipeDetailsComponent,
   },
   {
@@ -31,8 +37,26 @@ const routes: Routes = [
   },
   {
     path: 'login',
+
     component: LoginComponent,
+    canDeactivate: [UnsavedGuard],
   },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivateChild: [AuthGuard],
+    children: [
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canDeactivate: [UnsavedGuard],
+      },
+
+      { path: 'settings', component: SettingsComponent },
+    ],
+  },
+  { path: 'not-found', component: NotFountComponent },
+  { path: '**', redirectTo: '/not-found' },
 ];
 
 @NgModule({
