@@ -1,10 +1,23 @@
-<div class="message-box">
-  @if (type === 'success') {
+ <!-- <h2>Single-slot content projection</h2>
+    <ng-content></ng-content> -->
+
+      <h2>Multi-slot content projection</h2>
+
+    Default:
     <ng-content></ng-content>
-  } @else if (type === 'error') {
-    <ng-content></ng-content>
-  } @else {
-    <p>ℹ️ Default message</p>
-  }
+
+    Question:
+    <ng-content select="[question]"></ng-content>
+
+    Answer: 
+    <ng-content select="[answer]"></ng-content>
+
+
+    <div *ngIf="expanded" [id]="content">
+    <ng-container [ngTemplateOutlet]="content.templateRef"></ng-container>
+
+    <content>
+      i am robin
+    </content>
 </div>
 

@@ -1,28 +1,54 @@
 <section class="container-xl my-5">
   <h1 class="my-3">----- Data Binding/directive Depp Dive</h1>
-    <div class="row">
-  <div class="col-xs-12 ">
-    <p>Add new Servers or blueprints!</p>
-    <label>Server Name</label>
-    <input type="text" class="form-control" [(ngModel)]="newServerName">
-    <!-- <input
+  <div class="row">
+    <div class="col-xs-12">
+      <p>Add new Servers or blueprints!</p>
+      <label>Server Name</label>
+      <input type="text" class="form-control" [(ngModel)]="newServerName" />
+      <!-- <input
       type="text"
       class="form-control"
       #serverNameInput> -->
-    <label>Server Content</label>
-    <input type="text" class="form-control" [(ngModel)]="newServerContent">
-    <!-- <input
+      <label>Server Content</label>
+      <input type="text" class="form-control" [(ngModel)]="newServerContent" />
+      <!-- <input
       type="text"
       class="form-control"
       #serverContentInput> -->
-    <br>
-    <button
-      class="btn btn-primary m-lg-2"
-      (click)="onAddServer()">Add Server</button>
-    <button
-      class="btn btn-primary"
-      (click)="onAddBluePrint()">Add Server Blueprint</button>
-  </div>
+      <br />
+      <button class="btn btn-primary m-lg-2" (click)="onAddServer()">
+        Add Server
+      </button>
+      <button class="btn btn-primary" (click)="onAddBluePrint()">
+        Add Server Blueprint
+      </button>
+    </div>
 
-</div>
+    <div class="mt-5">
+      <button
+        (click)="toggleActive()"
+        [ngClass]="{ 'active-btn': isActive, 'inActive-btn': !isActive }"
+        class="base-btn"
+      >
+        {{ isActive ? "active" : "inactive" }}
+      </button>
+    </div>
+
+    <div class="mt-5">
+      <ul>
+        <li
+          *ngFor="let item of items"
+          (click)="selectedItems(item)"
+          [ngClass]="{ 'selected': item === selectedItem }"
+          class="item"
+        >
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+
+    <div [ngClass]="{'spinner': isLoading, 'hidden': !isLoading}">
+
+    </div>
+  </div>
 </section>

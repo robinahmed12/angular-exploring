@@ -6,7 +6,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./cockpit.component.scss'],
 })
 export class CockpitComponent implements OnInit {
-  location = "b.baria"
+
+  isActive = false
+  selectedItem = "home"
+  isLoading = true
+  location = 'b.baria';
+  items = ["home", "about", "contact"]
   // @Output() clicked = EventEmitter
   @Output() serverCreated = new EventEmitter<{
     serverName: string;
@@ -19,11 +24,7 @@ export class CockpitComponent implements OnInit {
   newServerName = '';
   newServerContent = '';
 
-  constructor() {
-
-  }
-
-
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -41,7 +42,11 @@ export class CockpitComponent implements OnInit {
     });
   }
 
-  
+  toggleActive (){
+    this.isActive = !this.isActive
+  }
 
-  
+  selectedItems(item: string){
+    this.selectedItem = item 
+  }
 }

@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[appHighLight]'
+  selector: '[appHighLight]',
 })
 export class HighlightDirective implements OnInit {
   // ✅ Accept color from property binding → [appHighLight]="'red'"

@@ -32,8 +32,9 @@ import { ChildContnetComponent } from './content-projection/parent-content/child
     ParentComponent,
     ChildComponent,
     ParentContentComponent,
-    ChildContnetComponent
-    
+    ChildContnetComponent,
+
+
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

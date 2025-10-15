@@ -5,3 +5,20 @@
   }}</strong>
   <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
 </p>
+
+<div>
+  <p [ngStyle]="{ 'font-size': fontsize + 'px' }">this 15 px text</p>
+</div>
+
+<div>
+  <div
+    (mouseenter)="isHovered = true"
+    (mouseleave)="isHovered = false"
+    [ngStyle]="{
+      'box-shadow': isHovered ? '0 4px 12px rgba(0,0,0,0.2)' : 'none'
+    }"
+    class="card mb-2"
+  >
+    Hover me!
+  </div>
+</div>

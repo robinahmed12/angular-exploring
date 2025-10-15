@@ -6,6 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./server-element.component.scss']
 })
 export class ServerElementComponent implements OnInit {
+  fontsize = 30
+  isHovered = false
+
   @Input()
   element!: { type: string; name: string; content: string; };
   constructor() {
