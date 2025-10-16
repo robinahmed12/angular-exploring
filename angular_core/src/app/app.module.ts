@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CockpitComponent } from './Binding/cockpit/cockpit.component';
 import { ServerElementComponent } from './Binding/server-element/server-element.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighlightDirective } from './directive/hightlight.directive';
 import { UserComponent } from './components/user/user.component';
 import { AccountComponent } from './components/account/account.component';
@@ -19,6 +19,7 @@ import { ChildContnetComponent } from './content-projection/parent-content/child
 import { TemplateDrivenComponent } from './form/template-driven/template-driven.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ReactiveFormComponent } from './form/reactive-form/reactive-form.component';
 
 
 @NgModule({
@@ -39,10 +40,11 @@ import { FooterComponent } from './components/footer/footer.component';
     TemplateDrivenComponent,
     HeaderComponent,
     FooterComponent,
+    ReactiveFormComponent,
 
 
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

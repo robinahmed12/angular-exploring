@@ -1,0 +1,269 @@
+<div class="main-container">
+  <div class="form-wrapper">
+    <img
+      src="https://ucarecdn.com/72c83037-be6b-4303-81b3-64edb7b7aa24/donationform.png"
+      alt="Donation Form Illustration"
+      class="form-image"
+    />
+
+    <form [formGroup]="donateForm" (ngSubmit)="onSubmit()">
+      <!-- Title and Description -->
+      <div class="form-header">
+        <h2 class="form-title">Donate Now</h2>
+        <p class="form-description">
+          Your donation makes a difference. Please fill out the form below to
+          contribute.
+        </p>
+      </div>
+
+      <!-- Donor Information -->
+      <div formGroupName="userData">
+        <div class="form-group">
+          <label for="fullname" class="form-label">Full Name*</label>
+          <input
+            type="text"
+            name="fullname"
+            id="fullname"
+            class="form-input"
+            required
+            formControlName="fullname"
+          />
+          <small
+            *ngIf="
+              donateForm.get('userData.fullname')?.touched &&
+              donateForm.get('userData.fullname')?.invalid
+            "
+            class="text-danger"
+          >
+            Full name is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address*</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-input"
+            required
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              donateForm.get('userdata.email')?.touched &&
+              donateForm.get('email')?.invalid
+            "
+            class="text-danger"
+          >
+            <small
+              *ngIf="donateForm.get('userData.email')?.errors?.['required']"
+            >
+              Email is required.
+            </small>
+            <small *ngIf="donateForm.get('userData.email')?.errors?.['email']">
+              Enter a valid email format.
+            </small>
+            <small
+              *ngIf="donateForm.get('userData.email')?.errors?.['pattern']"
+            >
+              Email must be like: <em>example@domain.com</em>
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone" class="form-label">Phone Number (Optional)</label>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            class="form-input"
+            formControlName="phone"
+          />
+        </div>
+      </div>
+
+      <!-- Donation Amount -->
+      <div class="form-group">
+        <label class="form-label">Donation Amount*</label>
+        <div class="donation-options">
+          <label>
+            <input
+              type="radio"
+              name="donation-amount"
+              value="500"
+              class="form-radio"
+              formControlName="amount"
+            />
+            ₹500
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="donation-amount"
+              value="1000"
+              class="form-radio"
+              formControlName="amount"
+            />
+            ₹1000
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="donation-amount"
+              value="2500"
+              class="form-radio"
+              formControlName="amount"
+            />
+            ₹2500
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="donation-amount"
+              value="5000"
+              class="form-radio"
+              formControlName="amount"
+            />
+            ₹5000
+          </label>
+        </div>
+        <div class="other-amount-group">
+          <label for="other-amount" class="form-label">Other Amount</label>
+          <input
+            type="number"
+            name="other-amount"
+            id="other-amount"
+            class="form-input"
+            placeholder="Enter amount"
+            formControlName="otherAmount"
+          />
+        </div>
+      </div>
+
+      <!-- Payment Details -->
+      <div class="form-group">
+        <label class="form-label">Payment Mode*</label>
+        <div class="payment-options">
+          <label>
+            <input
+              type="radio"
+              name="payment-mode"
+              value="cash"
+              class="form-radio"
+              formControlName="paymentMethod"
+            />
+            Cash
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="payment-mode"
+              value="card"
+              class="form-radio"
+              required
+              formControlName="paymentMethod"
+            />
+            Credit/Debit Card
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="payment-mode"
+              value="netbanking"
+              class="form-radio"
+              formControlName="paymentMethod"
+            />
+            Net Banking
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="payment-mode"
+              value="paypal"
+              class="form-radio"
+              formControlName="paymentMethod"
+            />
+            PayPal
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="transaction-id" class="form-label"
+          >Transaction ID (Optional)</label
+        >
+        <input
+          type="text"
+          name="transaction-id"
+          id="transaction-id"
+          class="form-input"
+          placeholder="Enter if you have one"
+          formControlName="tnxId"
+        />
+      </div>
+
+      <!-- Purpose (Optional) -->
+      <div class="form-group">
+        <label for="purpose" class="form-label">Purpose (Optional)</label>
+        <select
+          name="purpose"
+          id="purpose"
+          class="form-select"
+          formControlName="purpose"
+        >
+          <option value="general-fund">General Fund</option>
+          <option value="education-program">Education Program</option>
+          <option value="disaster-relief">Disaster Relief</option>
+          <option value="medical-support">Medical Support</option>
+        </select>
+      </div>
+
+      <!-- Message / Note -->
+      <div class="form-group">
+        <label for="message" class="form-label"
+          >Write a note with your donation (Optional)</label
+        >
+        <textarea
+          name="message"
+          id="message"
+          rows="4"
+          class="form-textarea"
+          formControlName="note"
+        ></textarea>
+      </div>
+
+      <!-- Consent / Agreement -->
+      <div class="consent-group">
+        <input type="checkbox" id="consent" class="form-checkbox" required />
+        <label for="consent" class="consent-label">
+          I agree to the terms and understand this donation is non-refundable.
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Submit Donation</button>
+
+      <!-- <button type="button" class="submit-btn mt-2" (click)="addPhone()">
+        Add Phone
+      </button> -->
+
+      <!-- <div formArrayName="phoneNumbers">
+        <div *ngFor="let phone of phoneNumbers.controls; let i = index">
+          <input
+            class="phone-btn"
+            [formControlName]="i"
+            placeholder="Phone Number"
+          />
+
+          <div *ngIf="phone.invalid && phone.touched">
+            <small *ngIf="phone.errors?.['required']">Phone is required.</small>
+            <small *ngIf="phone.errors?.['pattern']">Must be 10 digits.</small>
+          </div>
+
+        </div>
+      </div> -->
+    </form>
+  </div>
+</div>
