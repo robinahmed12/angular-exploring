@@ -1,0 +1,179 @@
+<section class="container mt-lg-5">
+  <form class="form" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+    <p class="title">Register</p>
+    <p class="message">Signup now and get full access to our app.</p>
+    <div class="flex">
+      <label>
+        <input
+          name="firstName"
+          [(ngModel)]="user.firstName"
+          required
+          #fName="ngModel"
+          placeholder=""
+          type="text"
+          class="input"
+        />
+
+        <span>FirstName</span>
+        <!-- error msg -->
+        <small *ngIf="fName.invalid && fName.touched"
+          >first name is required</small
+        >
+      </label>
+
+      <label>
+        <input
+          name="lastName"
+          [(ngModel)]="user.lastName"
+          required
+          placeholder=""
+          type="text"
+          class="input"
+          #lName="ngModel"
+        />
+        <span>Lastname</span>
+        <!-- error msg -->
+        <small *ngIf="lName.invalid && lName.touched"
+          >last name is required</small
+        >
+      </label>
+    </div>
+
+    <label>
+      <input
+        name="email"
+        [(ngModel)]="user.email"
+        placeholder=""
+        type="email"
+        class="input"
+        required
+        email
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        #emailRef="ngModel"
+      />
+      <span>Email</span>
+    </label>
+    <!-- Error Message -->
+    <div *ngIf="emailRef.invalid && emailRef.touched">
+      <small *ngIf="emailRef.errors?.['required']">Email is required.</small>
+      <small *ngIf="emailRef.errors?.['email']"
+        >Enter a valid email address.</small
+      >
+      <small *ngIf="emailRef.errors?.['pattern']">Invalid email format.</small>
+    </div>
+
+    <label>
+      <input
+        name="password"
+        [(ngModel)]="user.password"
+        required
+        placeholder=""
+        type="password"
+        class="input"
+        required
+        minlength="8"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$"
+        #password="ngModel"
+      />
+      <span>Password</span>
+    </label>
+
+    <!-- Error Messages -->
+    <div *ngIf="password.invalid && password.touched">
+      <small *ngIf="password.errors?.['required']">Password is required.</small>
+      <small *ngIf="password.errors?.['minlength']"
+        >Password must be 8 characters max.</small
+      >
+      <small *ngIf="password.errors?.['pattern']">
+        Password must include uppercase, lowercase, number, and special
+        character (!@#$%^&*).
+      </small>
+    </div>
+
+    <label>
+      <input
+        name="confirmPassword"
+        [(ngModel)]="user.confirmPassword"
+        required
+        minlength="8"
+        placeholder=""
+        type="password"
+        class="input"
+        #confirmPassword="ngModel"
+      />
+      <span>Confirm password</span>
+    </label>
+    <!-- Error Messages -->
+    <div *ngIf="confirmPassword.invalid && confirmPassword.touched">
+      <small *ngIf="confirmPassword.errors?.['required']"
+        >Confirm password is required.</small
+      >
+      <small *ngIf="confirmPassword.errors?.['minlength']"
+        >Minimum 6 characters required.</small
+      >
+    </div>
+
+    <!-- Password Match Error -->
+    <div
+      *ngIf="user.password !== user.confirmPassword && confirmPassword.touched"
+    >
+      <small>Passwords do not match.</small>
+    </div>
+
+    <!-- gender -->
+    <div class="gender-group mt-lg-2">
+      <label>
+        <input
+          type="radio"
+          name="gender"
+          [(ngModel)]="user.gender"
+          value="male"
+          required
+          #gender="ngModel"
+        />
+        Male
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          name="gender"
+          [(ngModel)]="user.gender"
+          value="female"
+          required
+        />
+        Female
+      </label>
+    </div>
+    <!-- Error Message -->
+    <div *ngIf="gender.invalid && gender.touched">
+      <small>Please select your gender.</small>
+    </div>
+
+
+    <!-- Grouped Address Section -->
+    <div class="add" ngModelGroup="address" #addressGroup="ngModelGroup">
+      <label>
+        Street:
+        <input name="street" [(ngModel)]="user.address.street" required />
+      </label>
+
+      <label class="m-lg-2">
+        City:
+        <input name="city" [(ngModel)]="user.address.city" required />
+      </label>
+
+      <label>
+        Zip:
+        <input name="zip" [(ngModel)]="user.address.zip" required />
+      </label>
+    </div>
+    <!-- address inputs -->
+    <div *ngIf="addressGroup.invalid && addressGroup.touched">
+      <small>Complete all address fields.</small>
+    </div>
+
+    <button [disabled]="userForm.invalid" class="submit">Submit</button>
+    <p class="signin">Already have an acount ? <a href="#">Signin</a></p>
+  </form>
+</section>

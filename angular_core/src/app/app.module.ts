@@ -16,6 +16,9 @@ import { ParentComponent } from './component-communication/parent/parent.compone
 import { ChildComponent } from './component-communication/parent/child/child.component';
 import { ParentContentComponent } from './content-projection/parent-content/parent-content.component';
 import { ChildContnetComponent } from './content-projection/parent-content/child-contnet/child-contnet.component';
+import { TemplateDrivenComponent } from './form/template-driven/template-driven.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -33,6 +36,9 @@ import { ChildContnetComponent } from './content-projection/parent-content/child
     ChildComponent,
     ParentContentComponent,
     ChildContnetComponent,
+    TemplateDrivenComponent,
+    HeaderComponent,
+    FooterComponent,
 
 
   ],
