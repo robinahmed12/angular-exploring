@@ -1,4 +1,5 @@
 export class Recipe {
+  id?: number
   public name: string;
   public description: string;
   public recipeImg: string;

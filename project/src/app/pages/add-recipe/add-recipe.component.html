@@ -1,1 +1,272 @@
-<p>add-recipe works!</p>
+<div class="min-h-screen bg-soft-cream py-8 px-4">
+  <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+    <!-- Form Header -->
+    <div class="bg-warm-purple text-white p-6">
+      <h1 class="text-3xl font-bold">Share Your Recipe</h1>
+      <p class="mt-2 opacity-90">Add your delicious creation to our collection</p>
+    </div>
+    
+    <!-- Form Content -->
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="p-6 space-y-8">
+      <!-- Basic Information Section -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-semibold text-charcoal-gray border-b border-gray-200 pb-2">Basic Information</h2>
+        
+        <!-- Recipe Title -->
+        <div>
+          <label for="title" class="block text-sm font-medium text-charcoal-gray mb-1">Recipe Title *</label>
+          <input 
+            id="title" 
+            type="text" 
+            formControlName="title" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition"
+            placeholder="e.g., Creamy Garlic Pasta">
+          <div *ngIf="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched" class="text-fresh-coral text-sm mt-1">
+            <div *ngIf="recipeForm.get('title')?.errors?.['required']">Recipe title is required</div>
+            <div *ngIf="recipeForm.get('title')?.errors?.['minlength']">Title must be at least 3 characters</div>
+          </div>
+        </div>
+        
+        <!-- Description -->
+        <div>
+          <label for="description" class="block text-sm font-medium text-charcoal-gray mb-1">Description *</label>
+          <textarea 
+            id="description" 
+            formControlName="description" 
+            rows="3" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition"
+            placeholder="Describe your recipe..."></textarea>
+          <div *ngIf="recipeForm.get('description')?.invalid && recipeForm.get('description')?.touched" class="text-fresh-coral text-sm mt-1">
+            <div *ngIf="recipeForm.get('description')?.errors?.['required']">Description is required</div>
+            <div *ngIf="recipeForm.get('description')?.errors?.['minlength']">Description must be at least 10 characters</div>
+          </div>
+        </div>
+        
+        <!-- Time & Servings Row -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <!-- Prep Time -->
+          <div>
+            <label for="prepTime" class="block text-sm font-medium text-charcoal-gray mb-1">Prep Time (min) *</label>
+            <input 
+              id="prepTime" 
+              type="number" 
+              formControlName="prepTime" 
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition">
+            <div *ngIf="recipeForm.get('prepTime')?.invalid && recipeForm.get('prepTime')?.touched" class="text-fresh-coral text-sm mt-1">
+              Prep time is required
+            </div>
+          </div>
+          
+          <!-- Cook Time -->
+          <div>
+            <label for="cookTime" class="block text-sm font-medium text-charcoal-gray mb-1">Cook Time (min) *</label>
+            <input 
+              id="cookTime" 
+              type="number" 
+              formControlName="cookTime" 
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition">
+            <div *ngIf="recipeForm.get('cookTime')?.invalid && recipeForm.get('cookTime')?.touched" class="text-fresh-coral text-sm mt-1">
+              Cook time is required
+            </div>
+          </div>
+          
+          <!-- Servings -->
+          <div>
+            <label for="servings" class="block text-sm font-medium text-charcoal-gray mb-1">Servings *</label>
+            <input 
+              id="servings" 
+              type="number" 
+              formControlName="servings" 
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition">
+            <div *ngIf="recipeForm.get('servings')?.invalid && recipeForm.get('servings')?.touched" class="text-fresh-coral text-sm mt-1">
+              Servings is required
+            </div>
+          </div>
+          
+          <!-- Difficulty -->
+          <div>
+            <label for="difficulty" class="block text-sm font-medium text-charcoal-gray mb-1">Difficulty *</label>
+            <select 
+              id="difficulty" 
+              formControlName="difficulty" 
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition">
+              <option value="">Select difficulty</option>
+              <option *ngFor="let level of difficultyLevels" [value]="level">{{ level }}</option>
+            </select>
+            <div *ngIf="recipeForm.get('difficulty')?.invalid && recipeForm.get('difficulty')?.touched" class="text-fresh-coral text-sm mt-1">
+              Difficulty is required
+            </div>
+          </div>
+        </div>
+        
+        <!-- Category -->
+        <div>
+          <label for="category" class="block text-sm font-medium text-charcoal-gray mb-1">Category *</label>
+          <select 
+            id="category" 
+            formControlName="category" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition">
+            <option value="">Select category</option>
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+          </select>
+          <div *ngIf="recipeForm.get('category')?.invalid && recipeForm.get('category')?.touched" class="text-fresh-coral text-sm mt-1">
+            Category is required
+          </div>
+        </div>
+      </div>
+      
+      <!-- Ingredients Section -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-semibold text-charcoal-gray border-b border-gray-200 pb-2">Ingredients</h2>
+        
+        <div formArrayName="ingredients" class="space-y-4">
+          <div *ngFor="let ingredient of ingredients.controls; let i = index" [formGroupName]="i" class="flex flex-col md:flex-row gap-2 items-start">
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-2">
+              <input 
+                type="text" 
+                formControlName="amount" 
+                class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition"
+                placeholder="Amount">
+              <input 
+                type="text" 
+                formControlName="unit" 
+                class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition"
+                placeholder="Unit (e.g., cup, tsp)">
+              <input 
+                type="text" 
+                formControlName="name" 
+                class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition"
+                placeholder="Ingredient name">
+            </div>
+            <button 
+              type="button" 
+              (click)="removeIngredient(i)" 
+              class="px-3 py-2 bg-fresh-coral text-white rounded-lg hover:bg-red-500 transition"
+              *ngIf="ingredients.length > 1">
+              Remove
+            </button>
+          </div>
+        </div>
+        
+        <button 
+          type="button" 
+          (click)="addIngredient()" 
+          class="px-4 py-2 bg-sage-green text-white rounded-lg hover:bg-green-600 transition flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg>
+          Add Ingredient
+        </button>
+      </div>
+      
+      <!-- Instructions Section -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-semibold text-charcoal-gray border-b border-gray-200 pb-2">Instructions</h2>
+        
+        <div formArrayName="instructions" class="space-y-4">
+          <div *ngFor="let instruction of instructions.controls; let i = index" [formGroupName]="i" class="flex gap-4">
+            <div class="flex-1">
+              <label class="block text-sm font-medium text-charcoal-gray mb-1">Step {{ i + 1 }}</label>
+              <textarea 
+                formControlName="step" 
+                rows="2" 
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition"
+                placeholder="Describe this step..."></textarea>
+            </div>
+            <button 
+              type="button" 
+              (click)="removeInstruction(i)" 
+              class="px-3 py-2 bg-fresh-coral text-white rounded-lg hover:bg-red-500 transition mt-6"
+              *ngIf="instructions.length > 1">
+              Remove
+            </button>
+          </div>
+        </div>
+        
+        <button 
+          type="button" 
+          (click)="addInstruction()" 
+          class="px-4 py-2 bg-sage-green text-white rounded-lg hover:bg-green-600 transition flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg>
+          Add Step
+        </button>
+      </div>
+      
+      <!-- Tags Section -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold text-charcoal-gray border-b border-gray-200 pb-2">Tags</h2>
+        
+        <div>
+          <label for="tagInput" class="block text-sm font-medium text-charcoal-gray mb-1">Add Tags</label>
+          <div class="flex gap-2">
+            <input 
+              id="tagInput" 
+              type="text" 
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition"
+              placeholder="e.g., gluten-free, spicy, quick"
+              (keyup.enter)="addTag($event)">
+            <button 
+              type="button" 
+              (click)="addTag($event)" 
+              class="px-4 py-2 bg-sage-green text-white rounded-lg hover:bg-green-600 transition">
+              Add
+            </button>
+          </div>
+          <p class="text-sm text-gray-500 mt-1">Press Enter or click Add to include a tag</p>
+        </div>
+        
+        <div class="flex flex-wrap gap-2" *ngIf="tags.length > 0">
+          <div *ngFor="let tag of tags.controls; let i = index" class="bg-warm-purple text-white px-3 py-1 rounded-full flex items-center gap-1">
+            {{ tag.value }}
+            <button type="button" (click)="removeTag(i)" class="text-white hover:text-gray-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Image Upload Section -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold text-charcoal-gray border-b border-gray-200 pb-2">Recipe Image</h2>
+        
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-1">
+            <label for="image" class="block text-sm font-medium text-charcoal-gray mb-1">Upload Image</label>
+            <input 
+              id="image" 
+              type="file" 
+              (change)="onImageSelected($event)" 
+              accept="image/*" 
+              formControlName="image"
+
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-purple focus:border-transparent transition">
+            <p class="text-sm text-gray-500 mt-1">Upload a beautiful photo of your finished dish</p>
+          </div>
+          
+          <div class="w-48 h-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center overflow-hidden">
+            <img id="imagePreview" class="hidden w-full h-full object-cover" src="" alt="Recipe preview">
+            <div id="placeholder" class="text-gray-400 text-center p-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <p class="text-sm">Image Preview</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Submit Button -->
+      <div class="pt-6 border-t border-gray-200">
+        <button 
+          type="submit" 
+          class="w-full py-3 bg-warm-purple text-white rounded-lg font-semibold text-lg hover:bg-purple-700 transition focus:ring-4 focus:ring-purple-300">
+          Share Your Recipe
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

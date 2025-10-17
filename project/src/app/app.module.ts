@@ -13,7 +13,6 @@ import { ShoppingListComponent } from './components/shopping-list/shopping-list.
 import { AddShoppingComponent } from './components/shopping-list/add-shopping/add-shopping.component';
 import { AllRecipeComponent } from './pages/all-recipe/all-recipe.component';
 import { RecipeDetailsComponent } from './pages/recipe-details/recipe-details.component';
-import { AddRecipeComponent } from './pages/add-recipe/add-recipe.component';
 import { HomeComponent } from './home/home.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -24,6 +23,10 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
 import { NotFountComponent } from './components/not-fount/not-fount.component';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddRecipeComponent } from './pages/add-recipe/add-recipe.component';
+import { HttpClientModule } from '@angular/common/http';
+import { EditRecipeModalComponent } from './edit-recipe-modal/edit-recipe-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,6 @@ import { NotFountComponent } from './components/not-fount/not-fount.component';
     HeaderComponent,
     AllRecipeComponent,
     RecipeDetailsComponent,
-    AddRecipeComponent,
     HomeComponent,
     BannerComponent,
     FooterComponent,
@@ -48,14 +50,20 @@ import { NotFountComponent } from './components/not-fount/not-fount.component';
     DashboardComponent,
     ProfileComponent,
     SettingsComponent,
-    NotFountComponent
+    NotFountComponent,
+    AddRecipeComponent,
+    EditRecipeModalComponent
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+    
   ],
-  providers: [],
+  providers: [FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

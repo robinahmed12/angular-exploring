@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-all-recipe',
@@ -7,98 +8,56 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./all-recipe.component.scss'],
 })
 export class AllRecipeComponent implements OnInit {
-  recipes = [
-    {
-      id: 1,
-      recipeName: 'Polaw',
-      description:
-        'A fragrant rice dish cooked with ghee, aromatic spices, and garnished with fried onions — a classic South Asian favorite.',
-      price: 250,
-      ingredients: ['Basmati rice', 'ghee', 'onion', 'garam masala', 'salt'],
-      recipeImg: 'https://www.themealdb.com/images/media/meals/1529444113.jpg',
-    },
-    {
-      id: 2,
-      recipeName: 'Teheri',
-      description:
-        'A spiced yellow rice dish popular in Bangladesh, made with potatoes, turmeric, and flavorful whole spices.',
-      price: 180,
-      ingredients: ['Rice', 'potato', 'onion', 'turmeric', 'cardamom', 'salt'],
-      recipeImg:
-        'https://www.themealdb.com/images/media/meals/xrttsx1487339558.jpg',
-    },
-    {
-      id: 3,
-      recipeName: 'Baji',
-      description:
-        'Crispy deep-fried fritters made from gram flour, onion, and chili — the perfect snack for tea time.',
-      price: 120,
-      ingredients: ['Gram flour', 'onion', 'chili', 'salt', 'oil'],
-      recipeImg:
-        'https://www.themealdb.com/images/media/meals/xrttsx1487339558.jpg',
-    },
-    {
-      id: 4,
-      recipeName: 'Kacchi Biryani',
-      description:
-        'A rich Bangladeshi biryani made with marinated mutton and basmati rice, layered and cooked to perfection.',
-      price: 350,
-      ingredients: [
-        'Mutton',
-        'rice',
-        'yogurt',
-        'onion',
-        'garam masala',
-        'ghee',
-      ],
-      recipeImg:
-        'https://www.themealdb.com/images/media/meals/xrttsx1487339558.jpg',
-    },
-    {
-      id: 5,
-      recipeName: 'Beef Curry',
-      description:
-        'Tender beef cooked in a thick, spicy gravy with onions, garlic, and ginger — hearty and flavorful.',
-      price: 300,
-      ingredients: [
-        'Beef',
-        'onion',
-        'garlic',
-        'ginger',
-        'curry powder',
-        'salt',
-      ],
-      recipeImg:
-        'https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg',
-    },
-    {
-      id: 6,
-      recipeName: 'Fish Fry',
-      description:
-        'Crispy fried fish seasoned with chili and turmeric, a simple yet delicious seafood favorite.',
-      price: 200,
-      ingredients: ['Fish', 'chili powder', 'turmeric', 'salt', 'oil'],
-      recipeImg:
-        'https://www.themealdb.com/images/media/meals/uttuxy1511382180.jpg',
-    },
-  ];
+  recipes: any[] = [];
 
   filteredRecipes = this.recipes;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private recipeService: RecipeService
+  ) {}
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      const maxPrice = +params['maxPrice'];
-
-      if (!isNaN(maxPrice) && maxPrice > 0) {
-        this.filteredRecipes = this.recipes.filter((r) => r.price <= maxPrice);
-      } else {
-        this.filteredRecipes = this.recipes;
-      }
-    });
+    const stored = localStorage.getItem('recipes');
+    this.recipes = stored ? JSON.parse(stored) : [];
   }
 
-  onViewDetails(id: number, name: string) {
-    this.router.navigate(['/recipe-details', id, name]);
+  onViewDetails(id: number, title: string) {
+    this.router.navigate(['/recipe-details', id, title]);
+  }
+
+  selectedRecipe: any = null;
+
+  editRecipe(recipe: any): void {
+    this.selectedRecipe = recipe;
+  }
+
+  saveEditedRecipe(updated: any): void {
+    this.recipeService.saveRecipe(updated);
+    this.recipes = this.recipeService.getRecipes();
+    this.selectedRecipe = null;
+  }
+
+  closeModal(): void {
+    this.selectedRecipe = null;
+  }
+  deleteRecipe(id: string): void {
+    const confirmDelete = confirm(
+      'Are you sure you want to delete this recipe?'
+    );
+    if (confirmDelete) {
+      this.recipeService.deleteRecipe(id);
+      this.recipes = this.recipeService.getRecipes();
+      this.filteredRecipes = [...this.recipes];
+    }
   }
 }
+// this.route.queryParams.subscribe((params) => {
+//   const maxPrice = +params['maxPrice'];
+
+//   if (!isNaN(maxPrice) && maxPrice > 0) {
+//     this.filteredRecipes = this.recipes.filter((r) => r.price <= maxPrice);
+//   } else {
+//     this.filteredRecipes = this.recipes;
+//   }
+// });
