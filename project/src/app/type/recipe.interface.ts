@@ -14,6 +14,7 @@ export interface Recipe {
 }
 
 export interface Ingredient {
+amount: any;
   name: string;
   quantity: string; // e.g., "2 cups", "1 tbsp"
 }

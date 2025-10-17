@@ -1,0 +1,17 @@
+<section class="container mx-auto mt-10">
+  <div class="flex mb-6">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search meals..."
+      class="border border-purple-300 rounded-l-lg p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-purple-500" />
+    <button (click)="searchMeals()"
+      class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 rounded-r-lg">Search</button>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div *ngFor="let meal of meals" class="bg-purple-100 rounded-2xl shadow-lg p-4 text-purple-900">
+      <img [src]="meal.strMealThumb" alt="{{ meal.strMeal }}" class="w-full h-48 object-cover rounded-xl mb-4" />
+      <h3 class="text-xl font-bold">{{ meal.strMeal }}</h3>
+      <p class="text-gray-700"><strong>Category:</strong> {{ meal.strCategory }}</p>
+      <p class="text-gray-700"><strong>Area:</strong> {{ meal.strArea }}</p>
+    </div>
+  </div>
+</section>

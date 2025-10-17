@@ -12,6 +12,8 @@ import { SettingsComponent } from './dashboard/settings/settings.component';
 import { UnsavedGuard } from './services/unsaved.guard';
 import { NotFountComponent } from './components/not-fount/not-fount.component';
 import { AddRecipeComponent } from './pages/add-recipe/add-recipe.component';
+import { AddIngredientsComponent } from './pages/add-ingredients/add-ingredients.component';
+import { MealComponent } from './pages/meal/meal.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,14 @@ const routes: Routes = [
   {
     path: 'add-recipe',
     component: AddRecipeComponent,
+  },
+  {
+    path:"meals",
+    component: MealComponent
+  },
+  {
+    path: 'add-ingredient',
+    component: AddIngredientsComponent
   },
   {
     path: 'manage-recipe',

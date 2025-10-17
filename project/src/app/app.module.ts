@@ -27,6 +27,8 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddRecipeComponent } from './pages/add-recipe/add-recipe.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EditRecipeModalComponent } from './edit-recipe-modal/edit-recipe-modal.component';
+import { AddIngredientsComponent } from './pages/add-ingredients/add-ingredients.component';
+import { MealComponent } from './pages/meal/meal.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { EditRecipeModalComponent } from './edit-recipe-modal/edit-recipe-modal.
     SettingsComponent,
     NotFountComponent,
     AddRecipeComponent,
-    EditRecipeModalComponent
+    EditRecipeModalComponent,
+    AddIngredientsComponent,
+    MealComponent
 
   ],
   imports: [
