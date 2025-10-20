@@ -49,24 +49,14 @@
             required
             formControlName="email"
           />
-          <div
-            *ngIf="
-              donateForm.get('userdata.email')?.touched &&
-              donateForm.get('email')?.invalid
-            "
-            class="text-danger"
-          >
-            <small
-              *ngIf="donateForm.get('userData.email')?.errors?.['required']"
+          <div *ngIf="email?.touched && email?.invalid" class="text-danger">
+            <small *ngIf="email?.errors?.['required']"
+              >Email is required.</small
             >
-              Email is required.
-            </small>
-            <small *ngIf="donateForm.get('userData.email')?.errors?.['email']">
-              Enter a valid email format.
-            </small>
-            <small
-              *ngIf="donateForm.get('userData.email')?.errors?.['pattern']"
+            <small *ngIf="email?.errors?.['email']"
+              >Enter a valid email format.</small
             >
+            <small *ngIf="email?.errors?.['pattern']">
               Email must be like: <em>example@domain.com</em>
             </small>
           </div>
@@ -245,11 +235,11 @@
       <!-- Submit Button -->
       <button type="submit" class="submit-btn">Submit Donation</button>
 
-      <!-- <button type="button" class="submit-btn mt-2" (click)="addPhone()">
+      <button type="button" class="submit-btn mt-2" (click)="addPhone()">
         Add Phone
-      </button> -->
+      </button>
 
-      <!-- <div formArrayName="phoneNumbers">
+      <div formArrayName="phoneNumbers">
         <div *ngFor="let phone of phoneNumbers.controls; let i = index">
           <input
             class="phone-btn"
@@ -261,9 +251,8 @@
             <small *ngIf="phone.errors?.['required']">Phone is required.</small>
             <small *ngIf="phone.errors?.['pattern']">Must be 10 digits.</small>
           </div>
-
         </div>
-      </div> -->
+      </div>
     </form>
   </div>
 </div>

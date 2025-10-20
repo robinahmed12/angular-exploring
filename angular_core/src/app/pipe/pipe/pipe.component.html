@@ -1,0 +1,24 @@
+<section class="container mt-lg-5">
+  <button class="btn btn-primary">practice pipe</button>
+  <br>
+    <input class="mt-5" [(ngModel)]="filterProduct" type="text" name="" id="">
+  <div
+    *ngFor="let list of shoppingList | filter:filterProduct:'product'"
+    class="card mt-lg-5"
+    style="width: 18rem"
+  >
+
+    <!-- <img src="..." class="card-img-top" alt="..." /> -->
+    <div class="card-body">
+      <h5 class="card-title">{{ list.product | shortend }}</h5>
+      <p class="card-text">
+        {{ list.price }}
+      </p>
+      <p class="card-text">
+        {{ list.quantity }}
+      </p>
+      <p>{{ list.purchaseDate }}</p>
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+  </div>
+</section>

@@ -20,6 +20,9 @@ import { TemplateDrivenComponent } from './form/template-driven/template-driven.
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ReactiveFormComponent } from './form/reactive-form/reactive-form.component';
+import { PipeComponent } from './pipe/pipe/pipe.component';
+import { ShortendPipe } from './pipe/shortend.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
 
 
 @NgModule({
@@ -41,8 +44,9 @@ import { ReactiveFormComponent } from './form/reactive-form/reactive-form.compon
     HeaderComponent,
     FooterComponent,
     ReactiveFormComponent,
-
-
+    PipeComponent,
+    ShortendPipe,
+    FilterPipe
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],

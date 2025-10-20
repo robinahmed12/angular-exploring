@@ -36,22 +36,26 @@ export class ReactiveFormComponent implements OnInit {
       tnxId: new FormControl(null, [Validators.required]),
       note: new FormControl(null),
 
-      // phoneNumbers: new FormArray([]),
+      phoneNumbers: new FormArray([]),
     });
   }
 
   onSubmit() {
     console.log(this.donateForm.value);
   }
-  // get phoneNumbers(): FormArray {
-  //   return this.donateForm.get('phoneNumbers') as FormArray;
-  // }
+  get phoneNumbers(): FormArray {
+    return this.donateForm.get('phoneNumbers') as FormArray;
+  }
 
-  // addPhone() {
-  //   const control = new FormControl(null, [
-  //     Validators.required,
-  //     Validators.pattern('^[0-9]{10}$'),
-  //   ]);
-  //   (this.donateForm.get('phoneNumbers') as FormArray).push(control);
-  // }
+  addPhone() {
+    const control = new FormControl(null, [
+      Validators.required,
+      Validators.pattern('^[0-9]{10}$'),
+    ]);
+    (this.donateForm.get('phoneNumbers') as FormArray).push(control);
+  }
+
+  get email() {
+  return (this.donateForm.get('userData') as FormGroup).get('email');
+}
 }
