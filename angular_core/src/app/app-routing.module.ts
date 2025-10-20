@@ -6,6 +6,7 @@ import { ServerElementComponent } from './Binding/server-element/server-element.
 import { TemplateDrivenComponent } from './form/template-driven/template-driven.component';
 import { ReactiveFormComponent } from './form/reactive-form/reactive-form.component';
 import { PipeComponent } from './pipe/pipe/pipe.component';
+import { HttpCleintComponent } from './http-cleint/http-cleint.component';
 
 const routes: Routes = [{
   path: 'binding' , component: CockpitComponent 
@@ -24,6 +25,10 @@ path: "form-template" , component: TemplateDrivenComponent
 {
   path: "pipe",
   component: PipeComponent
+},
+{
+  path: "http",
+  component: HttpCleintComponent
 }
 ];
 

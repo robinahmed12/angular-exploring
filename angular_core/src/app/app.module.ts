@@ -23,6 +23,10 @@ import { ReactiveFormComponent } from './form/reactive-form/reactive-form.compon
 import { PipeComponent } from './pipe/pipe/pipe.component';
 import { ShortendPipe } from './pipe/shortend.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
+import { HttpCleintComponent } from './http-cleint/http-cleint.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -46,10 +50,20 @@ import { FilterPipe } from './pipe/filter.pipe';
     ReactiveFormComponent,
     PipeComponent,
     ShortendPipe,
-    FilterPipe
+    FilterPipe,
+    HttpCleintComponent,
+  
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
-  providers: [],
+  imports: [
+
+    BrowserModule,
+     AppRoutingModule, 
+    FormsModule, 
+    ReactiveFormsModule
+     , HttpClientModule,
+    
+  ],
+  providers: [] ,
   bootstrap: [AppComponent],
 })
 export class AppModule {}

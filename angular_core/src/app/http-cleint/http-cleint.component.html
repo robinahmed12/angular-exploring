@@ -1,0 +1,79 @@
+<section class="container mt-5">
+  <form
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+    class="row g-3 bg-danger p-lg-5"
+  >
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="inputEmail4"
+      />
+    </div>
+    <div class="col-md-6">
+      <label formControlName="password" for="inputPassword4" class="form-label"
+        >Password</label
+      >
+      <input
+        formControlName="email"
+        type="password"
+        class="form-control"
+        id="inputPassword4"
+      />
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Address</label>
+      <input
+        formControlName="address"
+        type="text"
+        class="form-control"
+        id="inputAddress"
+        placeholder="1234 Main St"
+      />
+    </div>
+    <div class="col-12">
+      <label for="inputAddress2" class="form-label">Address 2</label>
+      <input
+        formControlName="address2"
+        type="text"
+        class="form-control"
+        id="inputAddress2"
+        placeholder="Apartment, studio, or floor"
+      />
+    </div>
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">City</label>
+      <input
+        formControlName="city"
+        type="text"
+        class="form-control"
+        id="inputCity"
+      />
+    </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+  </form>
+
+  <div class="mt-lg-5">
+    <div *ngFor="let user of users">
+      <div class="bg-info mt-5 p-5">
+        <p>{{ user.email }}</p>
+        <p>{{ user.address2 }}</p>
+        <p>{{ user.city }}</p>
+     <div>
+         <button
+        (click)="handleDelete(user.id)"
+         class="btn btn-primary m-lg-2">delete</button>
+            <button
+        (click)="handleEdit(user.id)"
+         class="btn btn-danger">Edit</button>
+     </div>
+      </div>
+    </div>
+  </div>
+</section>
