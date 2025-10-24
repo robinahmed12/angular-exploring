@@ -68,6 +68,7 @@ It’s built as a personal learning and experimentation project to strengthen my
 | **TheMealDB API**              | Example Data Source   |
 | **LocalStorage**               | Local CRUD Simulation |
 
+
 ---
 
 ## ⚙️ Installation & Setup
@@ -75,7 +76,7 @@ It’s built as a personal learning and experimentation project to strengthen my
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/<your-username>/angular-fundamentals-practice.git
+   git clone https://github.com/<robinahmed12>/angular-fundamentals-practice.git
    cd angular-fundamentals-practice
    ```
 
