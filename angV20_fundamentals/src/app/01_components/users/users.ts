@@ -1,6 +1,4 @@
-import { DUMMY_USERS } from './../../typed/user.model';
-import { Component } from '@angular/core';
-
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-users',
@@ -8,10 +6,11 @@ import { Component } from '@angular/core';
   templateUrl: './users.html',
   styleUrl: './users.css',
 })
-export class  Users {
+export class Users {
+  @Input() user?: any;
+  @Output() select = new EventEmitter()
 
- users = DUMMY_USERS
- 
-
-
+  onSelectUser (id: any){
+    this.select.emit(id)
+  }
 }
